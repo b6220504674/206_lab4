@@ -1,0 +1,73 @@
+#include<stdio.h>
+int main()
+{
+	int n,i,j,k,best,worst,max=0,min=0;
+	scanf("%d",&n);
+	int a[n][3],g[n],s[n],b[n],r[n],m[n];
+	if(n>=3)
+	{
+		for(i=0;i<n;i++)
+		{
+			g[i]=0;
+			s[i]=0;
+			b[i]=0;
+		    for(j=0;j<3;j++)
+		    {
+		    	a[i][j]=0;
+			}
+		}
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<3;j++)
+			{
+				scanf("%d",&a[i][j]);
+			}
+	    }
+	    for(i=0;i<n;i++)
+	    {
+	    	for(j=0;j<3;j++)
+	    	{
+				if(j=0)
+				{
+					g[i]+=a[i][j];
+					g[i]*=4;
+				}
+				if(j=1)
+				{
+					s[i]+=a[i][j];
+					s[i]*=2;
+				}
+				if(j=2)
+				{
+					b[i]+=a[i][j];
+					b[i]*=1;
+					r[i]=g[i]+s[i]+b[i];
+				}
+			}
+		}
+	}
+	for(i=0;i<n-2;i++)
+	{
+		m[i]=r[i]+r[i+1]+r[i+2];
+	}
+	for(i=0;i<n-2;i++)
+	{
+		printf("  Medal %d %d\n",i,m[i]);
+	}
+	best=m[0];
+	worst=m[0];
+	for(i=0;i<m-2;i++)
+	{
+		if(best=m[i])
+		{
+			best=m[i];
+			max=i;
+		}
+		if(worst=m[i])
+		{
+			worst=m[i];
+			min=i;
+		}
+	}
+	printf("%d %d",max,min);
+}
